@@ -71,7 +71,13 @@ with st.sidebar:
 
 
 # ── 공통 필터 적용 ─────────────────────────────────────────────
-df_all = load_data()
+#df_all = load_data()
+try:
+    df_all = load_data()
+except Exception as e:
+    st.error("따릉이 데이터를 불러오지 못했습니다.")
+    st.exception(e)
+    st.stop()
 
 filtered = search_stations(df_all, keyword)
 if only_available:
